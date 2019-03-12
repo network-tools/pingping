@@ -9,15 +9,15 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
 	name='pingping',
-	version='0.0.1',
-	description="Understanding multi languge pingping and it's result",
+	version='1.0.0',
+	description="pingping is a special library understands multi linguistic ping output and translated the result to machine understandable format.",
 	long_description = long_description,
 	long_description_content_type = 'text/markdown',
 	url = 'https://github.com/network-tools/pingping',
 	author = 'Kiran Kumar Kotari',
 	author_email='kotarikirankumar@gmail.com',
 	classifiers = [ 
-		'Development Status :: 3 - Alpha',
+		'Development Status :: 5 - Production/Stable',
 		'Intended Audience :: Developers',
 		'Topic :: Software Development :: Build Tools',
 		'License :: OSI Approved :: MIT License', 
@@ -30,6 +30,6 @@ setup(
 		'Programming Language :: Python :: 3.6',
 		'Programming Language :: Python :: 3.7',
 		],
-	keywords = 'network conf parser translator cisco show output parser',
+	keywords = 'ping multi linguistic',
 	packages = find_packages(exclude=['tests', 'data', 'asserts']),
 )
