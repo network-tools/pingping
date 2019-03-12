@@ -9,8 +9,8 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
 	name='pingping',
-	version='1.0.0',
-	description="pingping is a special library understands multi linguistic ping output and translated the result to machine understandable format.",
+	version='1.0.1',
+	description="pingping is a special library which understands multi linguistic of ping output and translated the result to machine understandable format.",
 	long_description = long_description,
 	long_description_content_type = 'text/markdown',
 	url = 'https://github.com/network-tools/pingping',
