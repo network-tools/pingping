@@ -1,10 +1,11 @@
-from pingping.ping import Ping
 import pytest
 import os
 import json
 
+from pingping.ping import Ping
 
-class TestPingPing:
+
+class TestPing:
     file_path = os.path.abspath('data')
 
     @pytest.fixture
