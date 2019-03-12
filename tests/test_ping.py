@@ -88,6 +88,13 @@ class TestPing:
         result = self.read_all_inputs(setup, langauge='afrikaans')
         self.validate_result(result)
 
+    def test_ping_telugu(self, setup):
+        result = self.read_all_inputs(setup, langauge='telugu')
+        self.validate_result(result)
+
+    def test_ping_hindi(self, setup):
+        result = self.read_all_inputs(setup, langauge='hindi')
+        self.validate_result(result)
 
 #
 # def test_ping_arabic():
