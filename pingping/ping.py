@@ -5,8 +5,8 @@ import logging
 from shconfparser.parser import Parser
 
 
-class PingPing:
-    command = ['ping']
+class Ping:
+    command = ['pingping']
     p = Parser()
     ping_data = {}
     data = ''
@@ -94,7 +94,7 @@ class PingPing:
 
 
 if __name__ == "__main__":
-    obj = PingPing()
+    obj = Ping()
     obj.ping('192.168.0.1')
     obj.ping('127.0.0.1')
     obj.ping('1.1.1.1')

@@ -1,4 +1,4 @@
-from pingping.pingping import PingPing
+from pingping.ping import Ping
 import pytest
 import os
 import json
@@ -9,7 +9,7 @@ class TestPingPing:
 
     @pytest.fixture
     def setup(self):
-        p = PingPing()
+        p = Ping()
         yield p
 
     def read_all_inputs(self, obj, langauge='en'):
@@ -67,7 +67,7 @@ class TestPingPing:
 #   Respuesta de 50.28.23.175: bytes = 32 tiempo = 70 ms TTL = 47
 #   Respuesta de 50.28.23.175: bytes = 32 tiempo = 69ms TTL = 47
 #   Respuesta de 50.28.23.175: bytes = 32 tiempo = 69ms TTL = 47
-# Estadísticas de ping para 50.28.23.175:
+# Estadísticas de pingping para 50.28.23.175:
 #   Paquetes: Enviados = 4, Recibidos = 4, Perdidos = 0 (0% de pérdida),
 #   Tiempo aproximado de ida y vuelta en milisegundos:
 #   Mínimo = 69 ms, Máximo = 70 ms, promedio = 69 ms
@@ -127,7 +127,7 @@ class TestPingPing:
 #
 #
 # def test_ping_korean():
-#     result = """ask-leo.com [50.28.23.175]에 32 바이트의 데이터로 핑 (ping)
+#     result = """ask-leo.com [50.28.23.175]에 32 바이트의 데이터로 핑 (pingping)
 # 50.28.23.175에서 응답 : 바이트 = 32 시간 = 69ms TTL = 47
 #   50.28.23.175에서 응답 : 바이트 = 32 시간 = 70ms TTL = 47
 #   50.28.23.175에서 응답 : 바이트 = 32 시간 = 69ms TTL = 47
