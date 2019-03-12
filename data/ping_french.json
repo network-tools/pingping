@@ -1,0 +1,18 @@
+{
+  "linux": {
+    "1.1.1.1": "PING 1.1.1.1 (1.1.1.1) 56 (84) octets de données. \n64 octets à partir de 1.1.1.1: icmp_seq = 1 ttl = 63 fois = 188 ms \n64 octets à partir de 1.1.1.1: icmp_seq = 2 ttl = 63 fois = 126 ms \n64 octets à partir du 1.1.1.1: icmp_seq = 3 ttl = 63 heures = 58,8 ms \n64 octets à partir du 1.1.1.1: icmp_seq = 4 ttl = 63 heures = 58,4 ms \n \n --- 1.1.1.1 statistiques de ping --- \n4 paquets transmis, 4 reçus, 0% de perte de paquet, temps 3010ms \nrtt min / avg / max / mdev = 58.489 / 108.154 / 188.385 / 54.054 ms ",
+    "192.168.1.1": "PING 192.168.1.1 (192.168.1.1) 56 (84) octets de données. \n \n --- Statistiques sur le ping 192.168.1.1 --- \n4 paquets transmis, 0 reçus, 100% paquet perte, temps 3002ms "
+  },
+  "windows": {
+    "1.1.1.1": "Pinging 1.1.1.1 avec 32 octets de données: \nRéponse à partir de 1.1.1.1: octets = 32 fois = 87 ms TTL = 127 \nRéponse à partir de 1.1.1.1: octets = 32 fois = 71 ms TTL = 127 \nReponse du 1.1.1.1: octets = 32 fois = 68ms TTL = 127 \nRepondre du 1.1.1.1: octets = 32 fois = 99ms TTL = 127 \n \nPing statistiques pour 1.1.1.1:\n Paquets: Envoyés = 4, reçus = 4, perdu = 0 (perte 0%), \ntemps approximatifs aller-retour en millisecondes: \n minimum = 68 ms, maximum = 99 ms, moyenne = 81 ms ",
+    "192.168.1.1": "Pinging 192.168.1.1 avec 32 octets de données: \nLa requête a expiré. \nLa requête a expiré. \nLa requête a expiré. \n La requête a expiré. \n \nLes statistiques de transmission pour les paquets 192.168.1.1::\n : Envoyé = 4, reçu = 0, perdu = 4 (perte à 100%), "
+  },
+  "mac": {
+    "1.1.1.1": "PING 1.1.1.1 (1.1.1.1): 56 octets de données \n64 octets à partir de 1.1.1.1: icmp_seq = 0 ttl = 54 heure = 24.279 ms \n64 octets à partir de 1.1.1.1: icmp_seq = 1 ttl = 54 heures = 24,133 ms \n64 octets à partir de 1.1.1.1: icmp_seq = 2 ttl = 54 fois = 24,033 ms \n64 octets à partir de 1.1.1.1: icmp_seq = 3 ttl = 54 fois = 24,020 ms \n \n --- 1.1 .1.1 statistiques de ping --- \n4 paquets transmis, 4 paquets reçus, 0.0% perte de paquet \ntour / jour / min / moy / max / stddev = 24.020 / 24.116 / 24.279 / 0,104 ms ",
+    "192.168.1.1": "PING 192.168.1.1 (192.168.1.1): 56 octets de données \nDéclai de délai de demande pour icmp_seq 0 \nDéclai de délai de demande pour icmp_seq 1 \nDéclenchement de délai d'attente pour icmp_seq 2 \n \n --- 192.168.1.1. --- \n4 paquets transmis, 0 paquet reçu, 100.0% de perte de paquet "
+  },
+  "mingw64": {
+    "1.1.1.1": "Pinging 1.1.1.1 avec 32 octets de données: \nRéponse à partir de 1.1.1.1: octets = 32 fois = 64ms TTL = 127 \nRéponse à partir de 1.1.1.1: octets = 32 fois = 79ms TTL = 127 \nReponse du 1.1.1.1: octets = 32 fois = 71 ms TTL = 127 \nDécès de la requête expirée. \n \nStatistiques de transmission pour les paquets 1.1.1.1:\n: Envoyé = 4, Reçu = 3, Perdu = 1 (perte de 25%) , \nTemps approximatifs aller et retour en millisecondes: \n Minimum = 64 ms, Maximum = 79 ms, Moyenne = 71 ms ",
+    "192.168.1.1": "Pinging 192.168.1.1 avec 32 octets de données: \nLa requête a expiré. \nLa requête a expiré. \nLa requête a expiré. \n La requête a expiré. \n \nLes statistiques de transmission pour les paquets 192.168.1.1::\n : Envoyé = 4, reçu = 0, perdu = 4 (perte de 100%), \n "
+  }
+}

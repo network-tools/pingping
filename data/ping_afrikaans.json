@@ -1,0 +1,18 @@
+{
+  "linux": {
+    "1.1.1.1": "PING 1.1.1.1 (1.1.1.1) 56 (84) grepe van data. \n64 grepe van 1.1.1.1: icmp_seq = 1 ttl = 63 tyd = 188 ms \n64 grepe van 1.1.1.1: icmp_seq = 2 ttl = 63 tyd = 126 ms \n64 grepe van 1.1.1.1: icmp_seq = 3 ttl = 63 tyd = 58.8 ms \n64 grepe van 1.1.1.1: icmp_seq = 4 ttl = 63 tyd = 58.4 ms \n \n --- 1.1.1.1 ping statistieke --- \n4 pakkette oorgedra, 4 ontvang, 0% pakketverlies, tyd 3010ms \nrtt min / avg / max / mdev = 58.489 / 108.154 / 188.385 / 54.054 ms " ,
+    "192.168.1.1": "PING 192.168.1.1 (192.168.1.1) 56 (84) grepe data. \n \n --- 192.168.1.1 ping statistieke --- \n4 pakkies oorgedra, 0 ontvang, 100% pakkie verlies, tyd 3002ms "
+  } ,
+  "windows": {
+    "1.1.1.1": "Pinging 1.1.1.1 met 32 grepe data: \nReply van 1.1.1.1: grepe = 32 tyd = 87ms TTL = 127 \nReply van 1.1.1.1: grepe = 32 tyd = 71ms TTL = 127 \nReply van 1.1.1.1: grepe = 32 tyd = 68ms TTL = 127 \nReply van 1.1.1.1: grepe = 32 tyd = 99ms TTL = 127 \n \nPing statistieke vir 1.1.1.1:'n Pakette: Gestuur = 4, Ontvang = 4, Verlore = 0 (0% verlies), \nVolgende rondreisye in milli-sekondes: \n Minimum = 68ms, Maksimum = 99ms, Gemiddelde = 81ms " ,
+    "192.168.1.1": "Pinging 192.168.1.1 met 32 grepe data: \nRequest uitgestel. \nRequest uitgestel. \nRequest uitgestel. \nRequest uitgestel. \n \nPing statistieke vir 192.168.1.1: 'n pakkies : Gestuur = 4, Ontvang = 0, Verlore = 4 (100% verlies), "
+  } ,
+  "mac": {
+    "1.1.1.1": "PING 1.1.1.1 (1.1.1.1): 56 data grepe \n64 grepe van 1.1.1.1: icmp_seq = 0 ttl = 54 tyd = 24.279 ms \n64 grepe van 1.1.1.1: icmp_seq = 1 ttl = 54 keer = 24.133 ms \n64 bytes vanaf 1.1.1.1: icmp_seq = 2 ttl = 54 keer = 24.033 ms \n64 bytes vanaf 1.1.1.1: icmp_seq = 3 ttl = 54 tyd = 24.020 ms \n --- n --- 1.1 .1.1 ping statistieke --- \n4 pakkette oorgedra, 4 pakkies ontvang, 0.0% pakketverlies \n rondrit min / avg / max / stddev = 24.020 / 24.116 / 24.279 / 0.104 ms " ,
+    "192.168.1.1": "PING 192.168.1.1 (192.168.1.1): 56 data grepe \nRequest time-out vir icmp_seq 0 \nRequest time-out vir icmp_seq 1 \nRequest time-out vir icmp_seq 2 \n \n --- 192.168.1.1 ping statistieke --- \n4 pakkette oorgedra, 0 pakkies ontvang, 100.0% pakketverlies "
+  } ,
+  "mingw64": {
+    "1.1.1.1": "Pinging 1.1.1.1 met 32 grepe data: \nReply van 1.1.1.1: grepe = 32 tyd = 64ms TTL = 127 \nReply van 1.1.1.1: grepe = 32 tyd = 79ms TTL = 127 \nReply van 1.1.1.1: grepe = 32 tyd = 71ms TTL = 127 \nRequest getimed. \n \nPing statistieke vir 1.1.1.1:'n Pakette: Gestuur = 4, Ontvang = 3, Verlore = 1 (25% verlies) , \nVolgende rondreisye in milli-sekondes: \n Minimum = 64ms, Maksimum = 79ms, Gemiddeld = 71ms " ,
+    "192.168.1.1": "Pinging 192.168.1.1 met 32 grepe data: \nRequest uitgestel. \nRequest uitgestel. \nRequest uitgestel. \nRequest uitgestel. \n \nPing statistieke vir 192.168.1.1: 'n pakkies : Gestuur = 4, Ontvang = 0, Verlore = 4 (100% verlies), \n "
+  }
+}

@@ -80,48 +80,15 @@ class TestPing:
         result = self.read_all_inputs(setup, langauge='spanish')
         self.validate_result(result)
 
+    def test_ping_french(self, setup):
+        result = self.read_all_inputs(setup, langauge='french')
+        self.validate_result(result)
+
+    def test_ping_afrikaans(self, setup):
+        result = self.read_all_inputs(setup, langauge='afrikaans')
+        self.validate_result(result)
 
 
-#
-# # Need to remove after testing.
-# def test_ping_french():
-#     result = """Envoyez une requête à ask-leo.com [50.28.23.175] avec 32 octets de données:
-# Réponse de 50.28.23.175: octets = 32 fois = 69ms TTL = 47
-#   Réponse du 50.28.23.175: octets = 32 fois = 70ms TTL = 47
-#   Réponse de 50.28.23.175: octets = 32 fois = 69ms TTL = 47
-#   Réponse de 50.28.23.175: octets = 32 fois = 69ms TTL = 47
-# Statistiques de Ping pour 50.28.23.175:
-#   Paquets: envoyés = 4, reçus = 4, perdus = 0 (0% de perte),
-#   Durée approximative du trajet aller et retour en millisecondes:
-#   Minimum = 69 ms, Maximum = 70 ms, Moyenne = 69 ms
-# """
-#
-#
-# def test_ping_spanish():
-#     result = """Pinging ask-leo.com [50.28.23.175] con 32 bytes de datos:
-# Respuesta de 50.28.23.175: bytes = 32 tiempo = 69ms TTL = 47
-#   Respuesta de 50.28.23.175: bytes = 32 tiempo = 70 ms TTL = 47
-#   Respuesta de 50.28.23.175: bytes = 32 tiempo = 69ms TTL = 47
-#   Respuesta de 50.28.23.175: bytes = 32 tiempo = 69ms TTL = 47
-# Estadísticas de pingping para 50.28.23.175:
-#   Paquetes: Enviados = 4, Recibidos = 4, Perdidos = 0 (0% de pérdida),
-#   Tiempo aproximado de ida y vuelta en milisegundos:
-#   Mínimo = 69 ms, Máximo = 70 ms, promedio = 69 ms
-# """
-#
-#
-# def test_ping_afrikaans():
-#     result = """Pinging ask-leo.com [50.28.23.175] met 32 grepe data:
-# Antwoord van 50.28.23.175: bytes = 32 tyd = 69ms TTL = 47
-#   Antwoord van 50.28.23.175: bytes = 32 tyd = 70ms TTL = 47
-#   Antwoord van 50.28.23.175: bytes = 32 tyd = 69ms TTL = 47
-#   Antwoord van 50.28.23.175: bytes = 32 tyd = 69ms TTL = 47
-# Ping statistieke vir 50.28.23.175:
-#   Pakkette: Gestuur = 4, Ontvang = 4, Verlore = 0 (0% verlies),
-#   Geskatte rondreis tye in milli sekondes:
-#   Minimum = 69ms, Maksimum = 70ms, Gemiddelde = 69ms
-# """
-#
 #
 # def test_ping_arabic():
 #     result = """[pinging ask-leo.com [50.28.23.175] مع 32 بايت من البيانات:
