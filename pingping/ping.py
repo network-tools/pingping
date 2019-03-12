@@ -6,7 +6,7 @@ from shconfparser.parser import Parser
 
 
 class Ping:
-    command = ['pingping']
+    command = ['ping']
     p = Parser()
     ping_data = {}
     data = ''
@@ -38,7 +38,7 @@ class Ping:
             out, err = p.communicate()
             # print(out.decode())
             out = out.decode().split('\n')
-            self.fetch_ping_data(out)
+            return self.fetch_ping_data(out)
         else:
             logging.error('invalid ip entered {}'.format(ip))
 
@@ -58,12 +58,12 @@ class Ping:
 
     @classmethod
     def _fetch_time(cls):
-        pattern = r'.* *= *([0-9\.]+)\/([0-9\.]+)\/([0-9\.]+).*'
+        pattern = r'.* *= *([0-9\.]+)\s*\/\s*([0-9\.]+)\s*\/\s*([0-9\.]+).*'
         result = cls.p.search.search_in_tree(pattern, cls.data)
         if cls._set_time(result):
             return
 
-        pattern = r'.*?= *(\d+).*?= *(\d+).*?= *(\d+).*'
+        pattern = r'.*?= *(\d+).*?,.*?= *(\d+).*?,.*= *(\d+)\s*\S+\s*$'
         result = cls.p.search.search_in_tree(pattern, cls.data)
         if cls._set_time(result, index=[1, 3, 2]):
             return
@@ -80,7 +80,7 @@ class Ping:
     @classmethod
     def fetch_ping_data(cls, data, loss_percentage_filter=75):
         if type(data) is not list:
-            data = str(data).strip('\n')
+            data = str(data).split('\n')
 
         # print(data)
         cls.ping_data = {}
@@ -90,12 +90,12 @@ class Ping:
 
         if cls.ping_data.get('loss_percentage', 0) <= loss_percentage_filter:
             cls._fetch_time()
-        print(cls.ping_data)
+        return cls.ping_data
 
 
 if __name__ == "__main__":
     obj = Ping()
-    obj.ping('192.168.0.1')
-    obj.ping('127.0.0.1')
-    obj.ping('1.1.1.1')
+    print(obj.ping('192.168.1.1'))
+    print(obj.ping('127.0.0.1'))
+    print(obj.ping('1.1.1.1'))
 

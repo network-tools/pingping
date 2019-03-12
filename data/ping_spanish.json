@@ -1,0 +1,18 @@
+{
+  "linux": {
+    "1.1.1.1": "PING 1.1.1.1 (1.1.1.1) 56 (84) bytes de datos. \n64 bytes desde 1.1.1.1: icmp_seq = 1 ttl = 63 tiempo = 188 ms \n64 bytes desde 1.1.1.1: icmp_seq = 2 ttl = 63 tiempo = 126 ms \n64 bytes desde 1.1.1.1: icmp_seq = 3 ttl = 63 tiempo = 58.8 ms \n64 bytes desde 1.1.1.1: icmp_seq = 4 ttl = 63 tiempo = 58.4 ms \n \n --- 1.1.1.1 estadísticas de ping --- \n4 paquetes transmitidos, 4 recibidos, 0% de pérdida de paquetes, tiempo 3010ms \nrtt min / avg / max / mdev = 58.489 / 108.154 / 188.385 / 54.054 ms ",
+    "192.168.1.1": "PING 192.168.1.1 (192.168.1.1) 56 (84) bytes de datos. \n \n --- 192.168.1.1 estadísticas de ping --- \n4 paquetes transmitidos, 0 recibidos, 100% paquete pérdida, tiempo 3002ms "
+  },
+  "windows": {
+    "1.1.1.1": "Haciendo ping a 1.1.1.1 con 32 bytes de datos: \nResponder desde 1.1.1.1: bytes = 32 ms = 87ms TTL = 127 \nResponder desde 1.1.1.1: bytes = 32 veces = 71ms TTL = 127 \nResponder de 1.1.1.1: bytes = 32 tiempo = 68ms TTL = 127 \nResponder de 1.1.1.1: bytes = 32ms = 99ms TTL = 127 \n \nPadísticas de ping para 1.1.1.1:\n Paquetes: Enviados = 4, recibidos = 4, Perdida = 0 (0% de pérdida), \nTiempo aproximado de ida y vuelta en milisegundos: \n Mínimo = 68ms, máximo = 99ms, promedio = 81ms ",
+    "192.168.1.1": "Haciendo ping a 192.168.1.1 con 32 bytes de datos: \nSe ha agotado el tiempo de espera. \nSe ha agotado el tiempo de espera. \nSe ha agotado el tiempo de espera. \nSe ha agotado el tiempo de espera. \n \nPadística de 192.168.1.1: : Enviado = 4, Recibido = 0, Perdido = 4 (100% de pérdida), "
+  },
+  "mac": {
+    "1.1.1.1": "PING 1.1.1.1 (1.1.1.1): 56 bytes de datos \n64 bytes desde 1.1.1.1: icmp_seq = 0 ttl = 54 tiempo = 24.279 ms \n64 bytes desde 1.1.1.1: icmp_seq = 1 ttl = 54 tiempo = 24.133 ms \n64 bytes desde 1.1.1.1: icmp_seq = 2 ttl = 54 tiempo = 24.033 ms \n64 bytes desde 1.1.1.1: icmp_seq = 3 ttl = 54 tiempo = 24.020 ms \n \n --- 1.1 .1.1 estadísticas de ping --- \n4 paquetes transmitidos, 4 paquetes recibidos, 0.0% de pérdida de paquete \n de ida / vuelta mín / avg / max / stddev = 24.020 / 24.116 / 24.279 / 0.104 ms ",
+    "192.168.1.1": "PING 192.168.1.1 (192.168.1.1): 56 bytes de datos \nTiempo de espera para icmp_seq 0 \nTiempo de solicitud para icmp_seq 1 \nTiempo de solicitud para icmp_seq 2 \n \n --- 192.168.1.1 estadísticas de ping --- \n4 paquetes transmitidos, 0 paquetes recibidos, 100.0% de pérdida de paquetes "
+  },
+  "mingw64": {
+    "1.1.1.1": "Hacer ping a 1.1.1.1 con 32 bytes de datos: \nResponder desde 1.1.1.1: bytes = 32ms = 64ms TTL = 127 \nResponder desde 1.1.1.1: bytes = 32meses = 79ms TTL = 127 \nResponder de 1.1.1.1: bytes = 32 tiempo = 71ms TTL = 127 \nSe agotó el tiempo de espera. \n \nPadística de estadísticas para 1.1.1.1:\n Paquetes: Enviado = 4, Recibido = 3, Perdido = 1 (25% de pérdida) , \nTiempo aproximado de ida y vuelta en milisegundos: \n Mínimo = 64 ms, Máximo = 79 ms, Promedio = 71 ms ",
+    "192.168.1.1": "Haciendo ping a 192.168.1.1 con 32 bytes de datos: \nSe ha agotado el tiempo de espera. \nSe ha agotado el tiempo de espera. \nSe ha agotado el tiempo de espera. \nSe ha agotado el tiempo de espera. \n \nPadística de 192.168.1.1: : Enviado = 4, Recibido = 0, Perdido = 4 (100% de pérdida), \n "
+  }
+}
