@@ -40,8 +40,8 @@ print(obj.ping('1.1.1.1'))
 It's a Json output and easy to understand by the keys of it.
 
 ```json
-{'ip': '192.168.1.1', 'loss_percentage': 100.0}
-{'ip': '1.1.1.1', 'loss_percentage': 0.0, 'min': 55.669, 'avg': 78.198, 'max': 130.778, 'time_in': 'ms'}
+{"ip": "192.168.1.1", "loss_percentage": 100.0}
+{"ip": "1.1.1.1", "loss_percentage": 0.0, "min": 55.669, "avg": 78.198, "max": 130.778, "time_in": "ms"}
 ```
 
 - How to capture result from ping output.
@@ -55,7 +55,7 @@ Ping.fetch_ping_data(ping_output) # it's a class method.
 It automatically identifies the ip address and important details from it. It doesn't have any language barier.
 
 ```json
-{'ip': '1.1.1.1', 'loss_percentage': 0.0, 'min': 55.669, 'avg': 78.198, 'max': 130.778, 'time_in': 'ms'}
+{"ip": "1.1.1.1", "loss_percentage": 0.0, "min": 55.669, "avg": 78.198, "max": 130.778, "time_in": "ms"}
 ```
 
 ## Pre-requisites
