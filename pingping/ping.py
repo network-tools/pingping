@@ -11,10 +11,21 @@ class Ping:
     p = Parser()
     ping_data = {}
     data = ''
+    name = 'pingping'
 
-    def __init__(self, count=4):
+    def __init__(self, count=4, log_level=logging.INFO, log_format=None):
         self.os = os.name
         self.command = self._set_ping(count)
+        self.format = log_format
+        self.logger = self.set_logger_level(log_level)
+
+    def set_logger_level(self, log_level):
+        if self.format is None:
+            self.format = '[ %(levelname)s ] :: [ %(name)s ] :: %(message)s'
+        logging.basicConfig(stream=sys.stdout, level=log_level, format=self.format, datefmt=None)
+        logger = logging.getLogger(self.name)
+        logger.setLevel(log_level)
+        return logger
 
     def _set_ping(self, count):
         if self.os == 'nt':
