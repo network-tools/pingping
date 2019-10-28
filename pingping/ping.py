@@ -80,7 +80,7 @@ class Ping:
     @classmethod
     def fetch_ping_data(cls, data, loss_percentage_filter=75):
         if type(data) is not list:
-            data = str(data).encode('utf-8').split('\n')
+            data = str(data).decode('utf-8').split('\n')
 
         # print(data)
         cls.ping_data = {}
