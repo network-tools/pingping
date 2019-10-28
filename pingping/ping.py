@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import subprocess
 import logging
 from shconfparser.parser import Parser
@@ -80,7 +81,7 @@ class Ping:
     @classmethod
     def fetch_ping_data(cls, data, loss_percentage_filter=75):
         if type(data) is not list:
-            data = str(data).decode('utf-8').split('\n')
+            data = str(data).split('\n') # .encode('utf-8') issue in 2.7
 
         # print(data)
         cls.ping_data = {}
@@ -91,6 +92,15 @@ class Ping:
         if cls.ping_data.get('loss_percentage', 0) <= loss_percentage_filter:
             cls._fetch_time()
         return cls.ping_data
+
+
+def run():
+    obj = Ping()
+    if len(sys.argv) >= 2:
+        print(obj.ping(sys.argv[1]))
+    else:
+        print("Expecting an argument.")
+        print("e.g.: pingping <ip-address>")
 
 
 if __name__ == "__main__":
