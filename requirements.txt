@@ -1,6 +1,2 @@
 shconfparser==2.2.2
-coveralls==1.5.1
-pytest==4.0.2
-pytest-cov==2.6.0
-tox==3.7.0
 
