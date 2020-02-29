@@ -34,10 +34,12 @@ class TestPing:
         assert 58.489 == result['linux']['1.1.1.1']['min']
         assert 108.154 == result['linux']['1.1.1.1']['avg']
         assert 188.385 == result['linux']['1.1.1.1']['max']
+        assert 4 == result['linux']['1.1.1.1']['packets_transmitted']
 
         assert '192.168.1.1' in result['linux']
         assert 'loss_percentage' in result['linux']['192.168.1.1']
         assert 100.0 == result['linux']['192.168.1.1']['loss_percentage']
+        assert 4 == result['linux']['192.168.1.1']['packets_transmitted']
 
         assert '1.1.1.1' in result['windows']
         assert 'loss_percentage' in result['windows']['1.1.1.1']
@@ -45,10 +47,12 @@ class TestPing:
         assert 68.0 == result['windows']['1.1.1.1']['min']
         assert 81.0 == result['windows']['1.1.1.1']['avg']
         assert 99.0 == result['windows']['1.1.1.1']['max']
+        assert 4 == result['windows']['1.1.1.1']['packets_transmitted']
 
         assert '192.168.1.1' in result['windows']
         assert 'loss_percentage' in result['windows']['192.168.1.1']
         assert 100.0 == result['windows']['192.168.1.1']['loss_percentage']
+        assert 4 == result['windows']['192.168.1.1']['packets_transmitted']
 
         assert '1.1.1.1' in result['mac']
         assert 'loss_percentage' in result['mac']['1.1.1.1']
@@ -56,10 +60,12 @@ class TestPing:
         assert 24.02 == result['mac']['1.1.1.1']['min']
         assert 24.116 == result['mac']['1.1.1.1']['avg']
         assert 24.279 == result['mac']['1.1.1.1']['max']
+        assert 4 == result['mac']['1.1.1.1']['packets_transmitted']
 
         assert '192.168.1.1' in result['mac']
         assert 'loss_percentage' in result['mac']['192.168.1.1']
         assert 100.0 == result['mac']['192.168.1.1']['loss_percentage']
+        assert 4 == result['mac']['192.168.1.1']['packets_transmitted']
 
         assert '1.1.1.1' in result['mingw64']
         assert 'loss_percentage' in result['mingw64']['1.1.1.1']
@@ -67,10 +73,12 @@ class TestPing:
         assert 64.0 == result['mingw64']['1.1.1.1']['min']
         assert 71.0 == result['mingw64']['1.1.1.1']['avg']
         assert 79.0 == result['mingw64']['1.1.1.1']['max']
+        assert 4 == result['mingw64']['1.1.1.1']['packets_transmitted']
 
         assert '192.168.1.1' in result['mingw64']
         assert 'loss_percentage' in result['mingw64']['192.168.1.1']
         assert 100.0 == result['mingw64']['192.168.1.1']['loss_percentage']
+        assert 4 == result['mingw64']['192.168.1.1']['packets_transmitted']
 
     def test_ping_en(self, setup):
         result = self.read_all_inputs(setup)

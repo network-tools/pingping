@@ -69,6 +69,13 @@ class Ping:
             cls.ping_data['loss_percentage'] = float(result.group(result.lastindex))
 
     @classmethod
+    def _fetch_packets_count(cls):
+        pattern = r'^\s*(\d+).*%.*'
+        result = cls.p.search.search_in_tree(pattern, cls.data)
+        if result:
+            cls.ping_data['packets_transmitted'] = int(result.group(result.lastindex))
+
+    @classmethod
     def _fetch_time(cls):
         pattern = r'.* *= *([0-9\.]+)\s*\/\s*([0-9\.]+)\s*\/\s*([0-9\.]+).*'
         result = cls.p.search.search_in_tree(pattern, cls.data)
@@ -99,6 +106,7 @@ class Ping:
         cls.data = cls.p.parse_data(data)
         cls._fetch_ip()
         cls._fetch_loss_percentage()
+        cls._fetch_packets_count()
 
         if cls.ping_data.get('loss_percentage', 0) <= loss_percentage_filter:
             cls._fetch_time()
