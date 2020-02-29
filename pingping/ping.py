@@ -70,10 +70,17 @@ class Ping:
 
     @classmethod
     def _fetch_packets_count(cls):
+        pattern = r'^\s*.*?:.*(\d+), .*, .*%.*'
+        result = cls.p.search.search_in_tree(pattern, cls.data)
+        if result:
+            cls.ping_data['packets_transmitted'] = int(result.group(result.lastindex))
+            return
+        
         pattern = r'^\s*(\d+).*%.*'
         result = cls.p.search.search_in_tree(pattern, cls.data)
         if result:
             cls.ping_data['packets_transmitted'] = int(result.group(result.lastindex))
+            return
 
     @classmethod
     def _fetch_time(cls):
