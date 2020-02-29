@@ -1,27 +1,6 @@
-language: python
-sudo: false
-
-os:
-  - linux
-
-python:
-  - '3.5'
-  - '3.6'
-  - '3.7'
-
-install:
-  - pip install -r requirements_dev.txt
-
-script:
-  - "PYTHONPATH=. pytest -v -s --cov=pingping tests"
-
-after_success:
-  - coveralls
-
-deploy:
-  provider: pypi
-  user: "__token__"
-  password:
-    secure: hYacOjF4xH9pTzFzV7EnBKjRusx/IHYz+onfw+edPdKxrz2DfhLAAaa3AD45GdErO1V794i9F4cbGTLEzpC71xNJvcbF/EvNOPOmFMF7mAUCx6DEKpY0n4Pn28SUxZamQaygtM35eQkJN8Sg4gchPSTVa07A9DU9K1txljKQPqXc9z7gvmkHwgH9Hm/C5xckKH4uHf1qb3rOAuQ8e7IzymGD1WtOIwVoY8u2jlXN42Smhl5BYQ4poeoFxOSA1Sl3HnFtzw+6tGTTq1rZiYaqZhaUfFgCheK+1lFq68udp5i6qoYD6YliQZww9pfDwhKVMoC1XwkDSE3XU3kvrULktcahU8jp9q7swi43GPCZVKj/wG2FGFOHBLaz7FkpOOsyIIbVZdg+fKx0iIOZIsijni0wvNvVLiSIi99NOXeutz34g2Gm4K2ng6ePSrUQzC8gFfMzrIamoJbRjTGJ9vZuvoKA16IICRWXyi11fGwwEPtbSsHOrFt9cv8ir55EIbgpl1DkwSEnJTWsfe7HqVbTqr1XJYMetBr4266U9qEf2kTaZK2d+98qXqJd+Er8/Pnasgn7GS02xcLswIVhWfChi4lGzK7sWc3Hs972IgU9KA/+QHWrgEgZotTE037ae3GIGajIXyVcRzyuGsj6lD7f5vQD5g1y0oVPiTCap6Ps8n0=
-  on:
-    tags: true
+jobs:
+  include:
+    - stage: "travis-ci testing"
+      script: ./ci_test
+    - stage: "pypi deployment"
+      script: ./deploy
