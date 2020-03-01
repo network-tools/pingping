@@ -11,8 +11,11 @@ jobs:
         - '3.7'
       install:
         - pip install -r requirements_dev.txt
+      script:
+        - "PYTHONPATH=. pytest -v -s --cov=pingping tests"
       after_success:
         - coveralls
+
     - stage: "pypi deployment"
       deploy:
         provider: pypi
