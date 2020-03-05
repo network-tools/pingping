@@ -72,7 +72,7 @@ It automatically identifies the ip address and important details from it. It doe
 
 ## Commands
 
-```python
+```
 Usage pingping  <ip-address>
                 -c | --count <Number>
                 -l4 | --web | --tcp | --http (ping over proxy)
