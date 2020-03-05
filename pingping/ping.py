@@ -152,6 +152,7 @@ def run():
 
         for each in _proxy:
             if get_index(sys.argv, each):
+                os.environ['LC_CTYPE'] = "en_US.UTF-8"
                 obj = Ping(command='tcping', layer=4, timeout=3)
 
         for each in _count:
@@ -164,7 +165,6 @@ def run():
             obj = Ping()
 
         result = obj.ping(ip_address)
-        print(result)
         return result
     else:
         help()
