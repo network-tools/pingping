@@ -7,15 +7,16 @@ from shconfparser.parser import Parser
 
 
 class Ping:
-    command = ['ping']
+    command = []
     p = Parser()
     ping_data = {}
     data = ''
     name = 'pingping'
 
-    def __init__(self, count=4, log_level=logging.INFO, log_format=None):
+    def __init__(self, command='ping', count=4, layer=3, timeout=3, log_level=logging.INFO, log_format=None):
         self.os = os.name
-        self.command = self._set_ping(count)
+        self.command.append(command)
+        self.command = self._set_ping(count, layer=layer, timeout=timeout)
         self.format = log_format
         self.logger = self.set_logger_level(log_level)
 
@@ -27,14 +28,18 @@ class Ping:
         logger.setLevel(log_level)
         return logger
 
-    def _set_ping(self, count):
+    def _set_ping(self, count, layer, timeout):
+        if layer != 3:
+            self.command.append('-c {}'.format(count))
+            self.command.append('-t {}'.format(timeout))
         if self.os == 'nt':
             self.command.append('-n {}'.format(count))
         elif self.os == 'posix':
             self.command.append('-c {}'.format(count))
         return self.command
 
-    def is_valid_ip(self, ip):
+    @classmethod
+    def is_valid_ip(cls, ip):
         m = re.match(r"^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$", str(ip).strip())
         return bool(m) and all(map(lambda n: 0 <= int(n) <= 255, m.groups()))
 
@@ -120,14 +125,56 @@ class Ping:
         return cls.ping_data
 
 
-def run():
-    obj = Ping()
-    if len(sys.argv) >= 2:
-        print(obj.ping(sys.argv[1]))
-    else:
-        print("Expecting an argument.")
-        print("e.g.: pingping <ip-address>")
+def get_index(given_list, element):
+    try:
+        return given_list.index(element)
+    except ValueError:
+        return None
 
+def run():
+    obj = None
+    result =  None
+    ip_address = None
+    if len(sys.argv) >= 2:
+        _help = ['-h', '--help']
+        _proxy = ['-l4', '--web', '--tcp', '--http']
+        _count = ['-c', '--count']
+
+        for each in sys.argv[1:]:
+            if Ping.is_valid_ip(each):
+                ip_address = each
+                break
+
+        if ip_address is None:
+            for each in _help:
+                if get_index(sys.argv, each):
+                    help()
+
+        for each in _proxy:
+            if get_index(sys.argv, each):
+                obj = Ping(command='tcping', layer=4, timeout=3)
+
+        for each in _count:
+            index = get_index(sys.argv, each)
+            if index:
+                count = int(sys.argv[index + 1])
+                obj = Ping(count=count)
+
+        if obj is None:
+            obj = Ping()
+
+        result = obj.ping(ip_address)
+        print(result)
+        return result
+    else:
+        help()
+        exit(-1)
+
+def help():
+    print("Usage pingping  <ip-address>")
+    print("                -c | --count <Number>")
+    print("                -l4 | --web | --tcp | --http (ping over proxy)")
+    print("                -h | --help")
 
 if __name__ == "__main__":
     obj = Ping()
