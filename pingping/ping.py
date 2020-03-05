@@ -71,7 +71,10 @@ class Ping:
         pattern = r'.*(?: +|\()(\d+\.?\d*?)%.*'
         result = cls.p.search.search_in_tree(pattern, cls.data)
         if result:
-            cls.ping_data['loss_percentage'] = float(result.group(result.lastindex))
+            if cls.command[0] == 'tcping':
+                cls.ping_data['loss_percentage'] = 100 - float(result.group(result.lastindex))
+            else:
+                cls.ping_data['loss_percentage'] = float(result.group(result.lastindex))
 
     @classmethod
     def _fetch_packets_count(cls):
@@ -94,7 +97,7 @@ class Ping:
         if cls._set_time(result):
             return
 
-        pattern = r'.*?= *(\d+).*?,.*?= *(\d+).*?,.*= *(\d+)\s*\S+\s*$'
+        pattern = r'.*?= *(\d+(?:\.\d+)?).*?,.*?= *(\d+(?:\.\d+)?).*?,.*= *(\d+(?:\.\d+)?)\s*\S+\s*$'
         result = cls.p.search.search_in_tree(pattern, cls.data)
         if cls._set_time(result, index=[1, 3, 2]):
             return
