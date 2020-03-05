@@ -7,7 +7,6 @@ from shconfparser.parser import Parser
 
 
 class Ping:
-    command = []
     p = Parser()
     ping_data = {}
     data = ''
@@ -15,7 +14,7 @@ class Ping:
 
     def __init__(self, command='ping', count=4, layer=3, timeout=3, log_level=logging.INFO, log_format=None):
         self.os = os.name
-        self.command.append(command)
+        self.command = [command]
         self.command = self._set_ping(count, layer=layer, timeout=timeout)
         self.format = log_format
         self.logger = self.set_logger_level(log_level)
@@ -32,6 +31,7 @@ class Ping:
         if layer != 3:
             self.command.append('-c {}'.format(count))
             self.command.append('-t {}'.format(timeout))
+            return self.command
         if self.os == 'nt':
             self.command.append('-n {}'.format(count))
         elif self.os == 'posix':
@@ -49,29 +49,30 @@ class Ping:
 
     def ping(self, ip):
         command = self._add_ip(ip)
+        # print(command)
         if command:
             p = subprocess.Popen(command, stdout=subprocess.PIPE,
                                  stderr=subprocess.PIPE)
             out, err = p.communicate()
             # print(out.decode())
             out = out.decode().split('\n')
-            return self.fetch_ping_data(out)
+            return self.fetch_ping_data(out, command=command[0])
         else:
             logging.error('invalid ip entered {}'.format(ip))
 
     @classmethod
     def _fetch_ip(cls):
-        pattern = r'^.*?(\d+\.\d+\.\d+\.\d+)(?: |]|:).*'
+        pattern = r'^.*?(\d+\.\d+\.\d+\.\d+)(?: |]|:|\[).*'
         result = cls.p.search.search_in_tree(pattern, cls.data)
         if result:
             cls.ping_data['ip'] = result.group(result.lastindex)
 
     @classmethod
-    def _fetch_loss_percentage(cls):
+    def _fetch_loss_percentage(cls, command):
         pattern = r'.*(?: +|\()(\d+\.?\d*?)%.*'
         result = cls.p.search.search_in_tree(pattern, cls.data)
         if result:
-            if cls.command[0] == 'tcping':
+            if command == 'tcping':
                 cls.ping_data['loss_percentage'] = 100 - float(result.group(result.lastindex))
             else:
                 cls.ping_data['loss_percentage'] = float(result.group(result.lastindex))
@@ -112,7 +113,7 @@ class Ping:
             return True
 
     @classmethod
-    def fetch_ping_data(cls, data, loss_percentage_filter=75):
+    def fetch_ping_data(cls, data, command='ping', loss_percentage_filter=75):
         if type(data) is not list:
             data = str(data).split('\n') # .encode('utf-8') issue in 2.7
 
@@ -120,7 +121,7 @@ class Ping:
         cls.ping_data = {}
         cls.data = cls.p.parse_data(data)
         cls._fetch_ip()
-        cls._fetch_loss_percentage()
+        cls._fetch_loss_percentage(command)
         cls._fetch_packets_count()
 
         if cls.ping_data.get('loss_percentage', 0) <= loss_percentage_filter:
@@ -184,4 +185,8 @@ if __name__ == "__main__":
     print(obj.ping('192.168.1.1'))
     print(obj.ping('127.0.0.1'))
     print(obj.ping('1.1.1.1'))
-
+    obj = Ping(count=4)
+    print(obj.ping('8.8.8.8'))
+    obj = Ping(command='tcping', layer=4, timeout=3)
+    print(obj.ping('8.8.8.8'))
+    print(obj.ping('192.168.1.1'))
