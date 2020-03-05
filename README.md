@@ -8,6 +8,7 @@
 
 - [Introduction](#introduction)
 - [Docs](#docs)
+- [Commands](#commands)
 - [Pre-requisites](#pre-requisites)
 - [Installation and Downloads](#installation-and-downloads)
 - [FAQ](#faq)
@@ -23,28 +24,39 @@ pingping is a special library which understands multi linguistic of ping output 
 
 pingping is a vendor independent library where you can parse any language ping output
 
+pingping support tcping which works on transport layer i.e. Ping on proxy server, here ping refers to seding packets via tcp protocol to check the connectivity.
+
 ## Docs
 
-How to use pingping?
+**How to use pingping?**
 
-- How to run ping command
+- Command Line  
+  Type `pingping <ip-address>` or `pingping <ip-address> --web`. For more help type `pingping -h`
 
-It's very simple, create an object of __Ping__ and call __ping method with ip address__. Internally it calls system ping command and captures the needed result.
+- Python  
+  It's very simple, create an object of __Ping__ and call __ping method with ip address__. Internally it calls system ping command and captures the needed result.
+
+**How to run ping command?**
 
 ```python
+# cli
+pingping 192.168.1.1
+pingping 1.1.1.1
+
+# python code
 obj = Ping()
 print(obj.ping('192.168.1.1'))
 print(obj.ping('1.1.1.1'))
 ```
 
-It's a Json output and easy to understand by the keys of it.
+It returns Json output and easy to understand by the keys of it.
 
 ```json
 {"ip": "192.168.1.1", "loss_percentage": 100.0}
 {"ip": "1.1.1.1", "loss_percentage": 0.0, "min": 55.669, "avg": 78.198, "max": 130.778, "time_in": "ms"}
 ```
 
-- How to capture result from ping output.
+**How to capture result from ping output?**
 
 I am having ping result how to analise the output of it.
 
@@ -56,6 +68,15 @@ It automatically identifies the ip address and important details from it. It doe
 
 ```json
 {"ip": "1.1.1.1", "loss_percentage": 0.0, "min": 55.669, "avg": 78.198, "max": 130.778, "time_in": "ms"}
+```
+
+## Commands
+
+```python
+Usage pingping  <ip-address>
+                -c | --count <Number>
+                -l4 | --web | --tcp | --http (ping over proxy)
+                -h | --help
 ```
 
 ## Pre-requisites

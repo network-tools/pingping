@@ -172,13 +172,13 @@ def run():
         return result
     else:
         help()
-        exit(-1)
 
 def help():
     print("Usage pingping  <ip-address>")
     print("                -c | --count <Number>")
     print("                -l4 | --web | --tcp | --http (ping over proxy)")
     print("                -h | --help")
+    exit(-1)
 
 if __name__ == "__main__":
     obj = Ping()
