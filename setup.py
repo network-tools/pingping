@@ -14,7 +14,7 @@ with open(path.join(here, 'requirements.txt'), encoding='utf-8')as f:
 
 setup(
     name='pingping',
-    version='1.2.8',
+    version='1.3.0',
     description="pingping is a special library which understands multi linguistic of ping output and translated the result to machine understandable format.",
     long_description = long_description,
     long_description_content_type = 'text/markdown',
@@ -25,9 +25,6 @@ setup(
         'console_scripts': [
             'pingping = pingping.ping:run'
         ],
-    },
-    package_data={
-        "": ["*.txt", "*.md"],
     },
     install_requires=reqs,
     classifiers = [ 
@@ -41,5 +38,6 @@ setup(
         'Programming Language :: Python :: 3.7',
         ],
     keywords = 'ping multi linguistic',
-    packages = find_packages(exclude=['tests', 'data', 'asserts']),
+    packages = find_packages(where='.', exclude=['tests', 'data']),
+    include_package_data=True,
 )

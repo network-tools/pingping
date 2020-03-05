@@ -4,13 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+shconfparser = ">=2.2.2"
+coveralls = ">=1.5.1"
+pytest = ">=4.0.2"
+pytest-cov = ">=2.6.0"
+tox = ">=3.7.0"
+tcping = "==0.1.1rc1"
 
 [packages]
-shconfparser = "==2.2.2"
-coveralls = "==1.5.1"
-pytest = "==4.0.2"
-pytest-cov = "==2.6.0"
-tox = "==3.7.0"
+shconfparser = ">=2.2.2"
+tcping = "==0.1.1rc1"
 
 [requires]
 python_version = "3.7"
