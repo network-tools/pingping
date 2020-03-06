@@ -11,10 +11,11 @@ class TestPing:
 
     @pytest.fixture
     def setup(self):
-        if sys.version_info.major == 2:
-            import imp
-            imp.reload(sys)
-            sys.setdefaultencoding('utf-8')
+        # # Not a good way to solve the encoding issue.
+        # if sys.version_info.major == 2:
+        #     import imp
+        #     imp.reload(sys)
+        #     sys.setdefaultencoding('utf-8')
 
         p = Ping()
         yield p
