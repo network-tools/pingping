@@ -15,7 +15,7 @@ with open(path.join(here, 'requirements.txt'), encoding='utf-8')as f:
 setup(
     name='pingping',
     version='1.3.4',
-    description="pingping is a special library which understands multi linguistic of ping output and translated the result to machine understandable format.",
+    description="pingping is a special library which understands multi linguistic of ping output and translated the result to machine understandable format. Pingping support tcp-ping",
     long_description = long_description,
     long_description_content_type = 'text/markdown',
     url = 'https://github.com/network-tools/pingping',
@@ -37,7 +37,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         ],
-    keywords = 'ping multi linguistic',
+    keywords = 'ping multi linguistic, tcp ping, web ping, http ping, l4 ping, ping over proxy',
     packages = find_packages(where='.', exclude=['tests', 'data']),
     include_package_data=True,
 )
