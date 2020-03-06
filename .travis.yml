@@ -6,7 +6,7 @@ jobs:
     - stage: "travis-ci testing 2.7"
       os: linux
       python:
-        - '2.7'
+        - '2.7.16'
       install:
         - pip install -r requirements_dev27.txt
       script:
