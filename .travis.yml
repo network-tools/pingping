@@ -12,6 +12,7 @@ jobs:
       script:
         - "export LANG='en_US.UTF-8'"
         - "export LC_ALL='en_US.UTF-8'"
+        - "export PYTHONIOENCODING='utf-8'"
         - "PYTHONPATH=. pytest -v -s --cov=pingping tests"
     - stage: "travis-ci testing 3.5"
       os: linux
