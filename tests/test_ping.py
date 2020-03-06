@@ -1,5 +1,6 @@
 import pytest
 import os
+import sys
 import json
 
 from pingping.ping import Ping
@@ -10,6 +11,11 @@ class TestPing:
 
     @pytest.fixture
     def setup(self):
+        if sys.version_info.major == 2:
+            import imp
+            imp.reload(sys)
+            sys.setdefaultencoding('utf-8')
+
         p = Ping()
         yield p
 
