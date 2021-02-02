@@ -47,6 +47,12 @@ pingping 1.1.1.1
 obj = Ping()
 print(obj.ping('192.168.1.1'))
 print(obj.ping('1.1.1.1'))
+
+# python tcping ping 
+obj = Ping(command='tcping', layer=4, timeout=3)
+print(obj.ping('192.168.1.1'))
+print(obj.ping('1.1.1.1'))
+
 ```
 
 It returns Json output and easy to understand by the keys of it.
