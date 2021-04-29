@@ -1,6 +1,8 @@
 # Multi Linguistic Ping (pingping)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://github.com/network-tools/pingping/actions/workflows/pytest.yml/badge.svg)](https://github.com/network-tools/pingping)
+[![Build Status](https://github.com/network-tools/pingping/actions/workflows/pytest-python2.yml/badge.svg)](https://github.com/network-tools/pingping)
 [![Build Status](https://travis-ci.org/network-tools/pingping.svg?branch=master)](https://travis-ci.org/network-tools/pingping)
 [![Downloads](https://pepy.tech/badge/pingping)](https://pepy.tech/project/pingping)
 [![GitHub issues open](https://img.shields.io/github/issues/network-tools/pingping.svg?)](https://github.com/network-tools/pingping/issues)
