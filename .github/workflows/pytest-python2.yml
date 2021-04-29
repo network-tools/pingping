@@ -10,7 +10,10 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
 
     steps:
     - uses: actions/checkout@v2
@@ -21,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
+        python -m pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
@@ -32,3 +35,8 @@ jobs:
     - name: Test with pytest
       run: |
         pytest -v
+    - name: Upload coverage
+      uses: codecov/codecov-action@v1
+      with:
+        name: ${{ matrix.os }} Python ${{ matrix.python-version }}
+
