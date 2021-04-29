@@ -1,4 +1,4 @@
-name: pytest in Python3
+name: "pytest: py3"
 
 on:
   push:
