@@ -1,4 +1,4 @@
-name: "pytest: py2"
+name: "pytest:py2 "
 
 on:
   push:
