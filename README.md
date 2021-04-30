@@ -129,11 +129,12 @@ If you're Interested in the source, you can always pull from the github repo:
 
 ## Unit Tests
 
-- [Travis CI](https://travis-ci.org/network-tools/pingping/builds) project tests pingping on Python versions `2.7` through `3.7`.
+- pingping project unit tests are running at [GitHub Actions](https://github.com/network-tools/pingping/actions) via pytest for Python [2.7](https://github.com/network-tools/pingping/actions/workflows/pytest-python2.yml) and [3.x](https://github.com/network-tools/pingping/actions/workflows/pytest.yml).
 
 - The current build status is:
 
-   [![Build Status](https://travis-ci.org/network-tools/pingping.svg?branch=master)](https://travis-ci.org/network-tools/pingping)
+   [![Build Status](https://github.com/network-tools/pingping/actions/workflows/pytest.yml/badge.svg)](https://github.com/network-tools/pingping)
+   [![Build Status](https://github.com/network-tools/pingping/actions/workflows/pytest-python2.yml/badge.svg)](https://github.com/network-tools/pingping)
 
 ## License and Copyright
 
