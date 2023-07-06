@@ -110,3 +110,7 @@ class TestPing:
     def test_ping_hindi(self, setup):
         result = self.read_all_inputs(setup, langauge='hindi')
         self.validate_result(result)
+
+    def test_ping_hindi_2(self, setup):
+        result = self.read_all_inputs(setup, langauge='hindi')
+        self.validate_result(result)
