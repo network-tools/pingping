@@ -2,11 +2,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://github.com/network-tools/pingping/actions/workflows/pytest.yml/badge.svg)](https://github.com/network-tools/pingping)
-[![Build Status](https://github.com/network-tools/pingping/actions/workflows/pytest-python2.yml/badge.svg)](https://github.com/network-tools/pingping)
 [![codecov](https://codecov.io/gh/network-tools/pingping/branch/master/graph/badge.svg?token=jNB6BX5az1)](https://codecov.io/gh/network-tools/pingping)
 [![Downloads](https://pepy.tech/badge/pingping)](https://pepy.tech/project/pingping)
 [![GitHub issues open](https://img.shields.io/github/issues/network-tools/pingping.svg?)](https://github.com/network-tools/pingping/issues)
-[![Known Vulnerabilities](https://snyk.io/test/github/network-tools/pingping/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/network-tools/pingping?targetFile=requirements.txt)
 
 - [Introduction](#introduction)
 - [Docs](#docs)
@@ -89,31 +87,36 @@ Usage pingping  <ip-address>
 
 ## Pre-requisites
 
-pingping supports both trains of **python** `2.7+ and 3.1+`, the OS should not matter.
+pingping supports **Python 3.8+**. The OS should not matter.
 
-- shconfparser is used to captured the data.
+- shconfparser is used to capture the data.
 
 ## Installation and Downloads
 
-The best way to get pingping is with setuptools or pip. If you already have setuptools, you can install as usual:
+The best way to get pingping is with pip or uv:
 
-`python -m pip install pingping`
+```bash
+pip install pingping
+```
 
-Otherwise download it from PyPi, extract it and run the `setup.py` script
+Or using uv:
 
-`python setup.py install`
+```bash
+uv pip install pingping
+```
 
-If you're Interested in the source, you can always pull from the github repo:
+If you're interested in the source, you can always pull from the github repo:
 
-- From github `git clone https://github.com/network-tools/pingping.git`
+```bash
+git clone https://github.com/network-tools/pingping.git
+cd pingping
+uv sync --all-extras  # Install with dev dependencies
+```
 
 ## FAQ
 
-- **Question:** I want to use pingping with Python3, is that safe?  
- **Answer:** As long as you're using python 3.3 or higher, it's safe. I tested every release against python 3.1+, however python 3.1 and 3.2 not running in continuous integration test.  
-
-- **Question:** I want to use pingping with Python2, is that safe?  
- **Answer:** As long as you're using python 2.7 or higher, it's safe. I tested against python 2.7.
+- **Question:** What Python versions does pingping support?  
+ **Answer:** pingping requires Python 3.8 or higher. All releases are tested against Python 3.8, 3.9, 3.10, 3.11, and 3.12.
 
 ## Other Resources
 
@@ -129,12 +132,41 @@ If you're Interested in the source, you can always pull from the github repo:
 
 ## Unit Tests
 
-- pingping project unit tests are running at [GitHub Actions](https://github.com/network-tools/pingping/actions) via pytest for Python [2.7](https://github.com/network-tools/pingping/actions/workflows/pytest-python2.yml) and [3.x](https://github.com/network-tools/pingping/actions/workflows/pytest.yml).
+- pingping project unit tests are running at [GitHub Actions](https://github.com/network-tools/pingping/actions) via pytest for Python 3.8+.
 
 - The current build status is:
 
    [![Build Status](https://github.com/network-tools/pingping/actions/workflows/pytest.yml/badge.svg)](https://github.com/network-tools/pingping)
-   [![Build Status](https://github.com/network-tools/pingping/actions/workflows/pytest-python2.yml/badge.svg)](https://github.com/network-tools/pingping)
+
+## Development
+
+This project uses modern Python tooling:
+
+- **[uv](https://github.com/astral-sh/uv)** - Fast Python package installer and resolver
+- **[ruff](https://github.com/astral-sh/ruff)** - Fast Python linter
+- **[black](https://github.com/psf/black)** - Code formatter
+- **[pytest](https://pytest.org/)** - Testing framework
+
+To set up a development environment:
+
+```bash
+# Install uv if you haven't already
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Clone and set up the project
+git clone https://github.com/network-tools/pingping.git
+cd pingping
+uv sync --all-extras
+
+# Run tests
+uv run pytest
+
+# Run linter
+uv run ruff check .
+
+# Format code
+uv run black .
+```
 
 ## License and Copyright
 
