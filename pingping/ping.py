@@ -44,7 +44,7 @@ class Ping:
     @classmethod
     def is_valid_ip(cls, ip):
         m = re.match(r"^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$", str(ip).strip())
-        return bool(m) and all(map(lambda n: 0 <= int(n) <= 255, m.groups()))
+        return bool(m) and all(0 <= int(n) <= 255 for n in m.groups())
 
     def _add_ip(self, ip):
         if self.is_valid_ip(ip):
@@ -108,7 +108,9 @@ class Ping:
             return
 
     @classmethod
-    def _set_time(cls, result, index=[1, 2, 3]):
+    def _set_time(cls, result, index=None):
+        if index is None:
+            index = [1, 2, 3]
         if result:
             cls.ping_data["min"] = float(result.group(index[0]))
             cls.ping_data["avg"] = float(result.group(index[1]))

@@ -1,6 +1,5 @@
 import json
 import os
-import sys
 
 import pytest
 
@@ -12,13 +11,6 @@ class TestPing:
 
     @pytest.fixture
     def setup(self):
-        # Not a good way to solve the encoding issue.
-        if sys.version_info.major == 2:
-            import imp
-
-            imp.reload(sys)
-            sys.setdefaultencoding("utf-8")
-
         p = Ping()
         yield p
 
@@ -26,10 +18,10 @@ class TestPing:
         file_name = f"ping_{langauge}.json"
         ping_data = json.load(open(f"{self.file_path}/{file_name}"))
         result = {}
-        for os, os_result in ping_data.items():
-            result[os] = {}
+        for os_name, os_result in ping_data.items():
+            result[os_name] = {}
             for ip, each_ping in os_result.items():
-                result[os][ip] = obj.fetch_ping_data(each_ping)
+                result[os_name][ip] = obj.fetch_ping_data(each_ping)
         return result
 
     def validate_result(self, result):
