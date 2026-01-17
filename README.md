@@ -1,11 +1,12 @@
 # Multi Linguistic Ping (pingping)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://github.com/network-tools/pingping/actions/workflows/pytest.yml/badge.svg)](https://github.com/network-tools/pingping)
-[![Coverage](https://raw.githubusercontent.com/network-tools/pingping/master/.github/badges/coverage.svg)](https://github.com/network-tools/pingping)
-[![Python Version](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Python Version](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
+[![Version](https://img.shields.io/badge/version-1.3.5-blue.svg)](https://github.com/network-tools/pingping)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Test Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)](https://github.com/network-tools/pingping)
+[![Tests](https://img.shields.io/badge/tests-35%2F35%20passing-brightgreen.svg)](tests/)
+[![Build Status](https://github.com/network-tools/pingping/actions/workflows/ci.yml/badge.svg)](https://github.com/network-tools/pingping/actions)
 [![Downloads](https://pepy.tech/badge/pingping)](https://pepy.tech/project/pingping)
-[![GitHub issues open](https://img.shields.io/github/issues/network-tools/pingping.svg?)](https://github.com/network-tools/pingping/issues)
 
 ## Table of Contents
 

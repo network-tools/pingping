@@ -1,0 +1,112 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    name: Test Python 3.12
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+    
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    
+    - name: Install dependencies
+      run: |
+        uv pip install --system -e ".[dev]"
+    
+    - name: Run ruff (lint)
+      run: |
+        ruff check .
+      continue-on-error: true
+    
+    - name: Run black (format check)
+      run: |
+        black --check .
+      continue-on-error: true
+    
+    - name: Run tests with coverage
+      run: |
+        pytest -v --cov=pingping --cov-report=xml --cov-report=json --cov-report=term
+    
+    - name: Generate coverage badge
+      uses: tj-actions/coverage-badge-py@v2
+      with:
+        output: coverage.svg
+    
+    - name: Upload coverage badge
+      if: github.ref == 'refs/heads/master'
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-badge
+        path: coverage.svg
+    
+    - name: Commit coverage badge
+      if: github.ref == 'refs/heads/master'
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        mkdir -p .github/badges
+        mv coverage.svg .github/badges/
+        git add .github/badges/coverage.svg || true
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update coverage badge [skip ci]"
+        git push || true
+
+  quality-gate:
+    name: TestIQ Quality Gate
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+    
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    
+    - name: Install dependencies
+      run: |
+        uv pip install --system -e ".[dev]"
+    
+    - name: Run tests with TestIQ coverage
+      run: |
+        pytest --testiq-output=testiq_coverage.json -q
+    
+    - name: Analyze test quality with TestIQ
+      run: |
+        testiq analyze testiq_coverage.json --threshold 1.0
+      continue-on-error: true
+    
+    - name: Generate HTML report
+      if: always()
+      run: |
+        mkdir -p reports
+        testiq analyze testiq_coverage.json --format html --output reports/testiq-report.html
+    
+    - name: Upload TestIQ report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: testiq-quality-report
+        path: reports/testiq-report.html
+        retention-days: 30
+
