@@ -21,6 +21,9 @@ lint: ## Run ruff linter
 lint-fix: ## Run ruff linter with auto-fix
 	uv run ruff check . --fix
 
+lint-unsafe-fix: ## Run ruff linter with unsafe auto-fixes
+	uv run ruff check . --fix --unsafe-fixes
+
 format: ## Format code with black
 	uv run black .
 

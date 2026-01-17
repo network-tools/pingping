@@ -1,7 +1,6 @@
 import json
 import os
-import sys
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -120,10 +119,10 @@ class TestPingAdditional:
         ping = Ping()
         logger = ping.set_logger_level("DEBUG")
         assert logger.level == 10  # DEBUG level
-        
+
         logger = ping.set_logger_level("INFO")
         assert logger.level == 20  # INFO level
-        
+
         logger = ping.set_logger_level("ERROR")
         assert logger.level == 40  # ERROR level
 
@@ -176,7 +175,7 @@ class TestPingAdditional:
             b""
         )
         mock_popen.return_value = mock_process
-        
+
         ping = Ping(count=1)
         result = ping.ping("8.8.8.8")
         assert result is not None
@@ -208,13 +207,6 @@ class TestPingAdditional:
         assert "-c 1" in ping1.command or "-n 1" in ping1.command
         assert "-c 10" in ping2.command or "-n 10" in ping2.command
 
-    def test_ping_different_counts(self):
-        """Test ping with different packet counts"""
-        ping1 = Ping(count=1)
-        ping2 = Ping(count=10)
-        assert "-c 1" in ping1.command or "-n 1" in ping1.command
-        assert "-c 10" in ping2.command or "-n 10" in ping2.command
-
     def test_set_ping_windows_os(self):
         """Test _set_ping for Windows OS"""
         ping = Ping(count=5)
@@ -237,8 +229,8 @@ class TestPingAdditional:
 
     def test_ping_with_timeout(self):
         """Test ping with custom timeout"""
-        ping1 = Ping(timeout=5)
-        ping2 = Ping(timeout=10)
+        Ping(timeout=5)
+        Ping(timeout=10)
         # Timeout should be in the command for layer 4
         ping_l4 = Ping(layer=4, timeout=5)
         assert "-t" in ' '.join(ping_l4.command) or "-t 5" in ping_l4.command
@@ -246,17 +238,17 @@ class TestPingAdditional:
     def test_tcping_loss_percentage_calculation(self):
         """Test tcping loss percentage calculation (line 78)"""
         from pingping.ping import Ping
-        
+
         # Mock tcping output with 80% successful (which means 80% success rate)
         tcping_output = """
         Probing 192.168.1.1:80/tcp - Port is open
         Port is open
         Port is open
         Port is open
-        
+
         Statistics: 4 probes sent, 80% successful
         """
-        
+
         # Test tcping command to hit line 78
         # When command="tcping", line 78 calculates: 100 - percentage = 100 - 80 = 20% loss
         ping = Ping(command="tcping", layer=4)
@@ -267,113 +259,113 @@ class TestPingAdditional:
 
 class TestCLIFunctions:
     """Test CLI functions: run() and help()"""
-    
+
     def test_run_with_valid_ip(self):
         """Test run() function with valid IP address (lines 146-181)"""
         from pingping.ping import run
-        
+
         with patch('sys.argv', ['pingping', '8.8.8.8']):
             with patch.object(Ping, 'ping', return_value={'ip': '8.8.8.8'}):
                 result = run()
                 assert result is not None
                 assert result['ip'] == '8.8.8.8'
-    
+
     def test_run_with_help_flag(self):
         """Test run() function with -h flag (lines 146-181)"""
         from pingping.ping import run
-        
+
         with patch('sys.argv', ['pingping', '-h']):
             with pytest.raises(SystemExit) as exc_info:
                 run()
             assert exc_info.value.code == -1
-    
+
     def test_run_with_help_long_flag(self):
         """Test run() function with --help flag (lines 146-181)"""
         from pingping.ping import run
-        
+
         with patch('sys.argv', ['pingping', '--help']):
             with pytest.raises(SystemExit) as exc_info:
                 run()
             assert exc_info.value.code == -1
-    
+
     def test_run_with_tcp_flag(self):
         """Test run() function with -l4 flag (lines 146-181)"""
         from pingping.ping import run
-        
+
         with patch('sys.argv', ['pingping', '-l4', '192.168.1.1']):
             with patch.object(Ping, 'ping', return_value={'ip': '192.168.1.1'}):
                 result = run()
                 assert result is not None
-    
+
     def test_run_with_web_flag(self):
         """Test run() function with --web flag (lines 146-181)"""
         from pingping.ping import run
-        
+
         with patch('sys.argv', ['pingping', '--web', '192.168.1.1']):
             with patch.object(Ping, 'ping', return_value={'ip': '192.168.1.1'}):
                 result = run()
                 assert result is not None
-    
+
     def test_run_with_tcp_long_flag(self):
         """Test run() function with --tcp flag (lines 146-181)"""
         from pingping.ping import run
-        
+
         with patch('sys.argv', ['pingping', '--tcp', '192.168.1.1']):
             with patch.object(Ping, 'ping', return_value={'ip': '192.168.1.1'}):
                 result = run()
                 assert result is not None
-    
+
     def test_run_with_http_flag(self):
         """Test run() function with --http flag (lines 146-181)"""
         from pingping.ping import run
-        
+
         with patch('sys.argv', ['pingping', '--http', '192.168.1.1']):
             with patch.object(Ping, 'ping', return_value={'ip': '192.168.1.1'}):
                 result = run()
                 assert result is not None
-    
+
     def test_run_with_count_flag(self):
         """Test run() function with -c flag (lines 146-181)"""
         from pingping.ping import run
-        
+
         with patch('sys.argv', ['pingping', '-c', '10', '8.8.8.8']):
             with patch.object(Ping, 'ping', return_value={'ip': '8.8.8.8'}):
                 result = run()
                 assert result is not None
-    
+
     def test_run_with_count_long_flag(self):
         """Test run() function with --count flag (lines 146-181)"""
         from pingping.ping import run
-        
+
         with patch('sys.argv', ['pingping', '--count', '15', '1.1.1.1']):
             with patch.object(Ping, 'ping', return_value={'ip': '1.1.1.1'}):
                 result = run()
                 assert result is not None
-    
+
     def test_run_with_no_ip_address(self):
         """Test run() function with invalid arguments - no valid IP (lines 146-181)"""
         from pingping.ping import run
-        
+
         # When -c flag is used but no valid IP is provided, it will create a default Ping
         # and attempt to ping None, which returns None (not a SystemExit)
         with patch('sys.argv', ['pingping', '--help', 'invalid']):
             with pytest.raises(SystemExit) as exc_info:
                 run()
             assert exc_info.value.code == -1
-    
+
     def test_run_with_no_arguments(self):
         """Test run() function with no arguments (lines 146-181)"""
         from pingping.ping import run
-        
+
         with patch('sys.argv', ['pingping']):
             with pytest.raises(SystemExit) as exc_info:
                 run()
             assert exc_info.value.code == -1
-    
+
     def test_help_function(self):
         """Test help() function (lines 185-189)"""
         from pingping.ping import help
-        
+
         with pytest.raises(SystemExit) as exc_info:
             help()
         assert exc_info.value.code == -1
