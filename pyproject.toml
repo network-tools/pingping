@@ -112,9 +112,6 @@ python_files = ["test_*.py"]
 python_functions = ["test_*"]
 addopts = [
     "-v",
-    "--cov=pingping",
-    "--cov-report=term-missing",
-    "--cov-report=xml",
 ]
 
 [tool.coverage.run]

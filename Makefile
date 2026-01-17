@@ -29,7 +29,7 @@ format-check: ## Check code formatting without changes
 
 testiq: ## Run testiq analysis (skips similarity checks)
 	uv run pytest --testiq-output=testiq_coverage.json
-	uv run testiq analyze testiq_coverage.json --threshold 1.0
+	uv run testiq analyze testiq_coverage.json --threshold 0.96
 
 testiq-score: ## Get test quality score
 	uv run pytest --testiq-output=testiq_coverage.json
@@ -37,7 +37,7 @@ testiq-score: ## Get test quality score
 
 testiq-html: ## Generate testiq HTML report
 	uv run pytest --testiq-output=testiq_coverage.json
-	uv run testiq analyze testiq_coverage.json --threshold 1.0 --format html --output testiq_report.html
+	uv run testiq analyze testiq_coverage.json --threshold 0.96 --format html --output testiq_report.html
 	@echo "Report generated: testiq_report.html"
 
 coverage: ## Run tests with coverage report
