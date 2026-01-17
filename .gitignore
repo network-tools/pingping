@@ -55,6 +55,9 @@ testiq_report.html
 .hypothesis/
 .pytest_cache/
 
+# Keep coverage badge in git
+!.github/badges/coverage.svg
+
 # Translations
 *.mo
 *.pot

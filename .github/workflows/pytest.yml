@@ -32,7 +32,7 @@ jobs:
       run: |
         uv run black --check .
     
-    - name: Test with pytest
+    - name: Test with pytest (for testiq)
       run: |
         uv run pytest --testiq-output=testiq_coverage.json
     
@@ -40,10 +40,30 @@ jobs:
       run: |
         uv run testiq analyze testiq_coverage.json --threshold 1.0
     
-    - name: Upload coverage
-      uses: codecov/codecov-action@v4
+    - name: Test with pytest (for coverage)
+      run: |
+        uv run pytest --cov=pingping --cov-report=json --cov-report=term
+    
+    - name: Generate coverage badge
+      uses: tj-actions/coverage-badge-py@v2
       with:
-        name: ${{ matrix.os }} Python ${{ matrix.python-version }}
-        token: ${{ secrets.CODECOV_TOKEN }}
-        verbose: true
+        output: coverage.svg
+    
+    - name: Upload coverage badge
+      if: github.ref == 'refs/heads/master'
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-badge
+        path: coverage.svg
+    
+    - name: Commit coverage badge
+      if: github.ref == 'refs/heads/master'
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        mkdir -p .github/badges
+        mv coverage.svg .github/badges/
+        git add .github/badges/coverage.svg || true
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update coverage badge [skip ci]"
+        git push || true
 

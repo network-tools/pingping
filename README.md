@@ -2,7 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://github.com/network-tools/pingping/actions/workflows/pytest.yml/badge.svg)](https://github.com/network-tools/pingping)
-[![codecov](https://codecov.io/gh/network-tools/pingping/branch/master/graph/badge.svg?token=jNB6BX5az1)](https://codecov.io/gh/network-tools/pingping)
+[![Coverage](https://raw.githubusercontent.com/network-tools/pingping/master/.github/badges/coverage.svg)](https://github.com/network-tools/pingping)
+[![Python Version](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Downloads](https://pepy.tech/badge/pingping)](https://pepy.tech/project/pingping)
 [![GitHub issues open](https://img.shields.io/github/issues/network-tools/pingping.svg?)](https://github.com/network-tools/pingping/issues)
 
