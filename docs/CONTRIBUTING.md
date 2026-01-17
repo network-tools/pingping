@@ -37,6 +37,9 @@ uv automatically manages virtual environments. Simply sync the project:
 ```bash
 # This will create a virtual environment and install all dependencies
 uv sync --all-extras
+
+# Or using Makefile
+make install
 ```
 
 The virtual environment will be created in `.venv/` directory.
@@ -50,7 +53,86 @@ Development dependencies are already included when you use `--all-extras`:
 - **ruff** - Fast Python linter
 - **black** - Code formatter
 - **testiq** - Test quality analysis tool
+Using Makefile (R
 
+Using Makefile:
+
+```bash
+# Run all tests
+make test
+
+# Run with verbose output
+make test-verbose
+
+# Run with coverage
+make coverage
+```
+
+Using uv directly:ecommended)
+
+The project includes a Makefile for common tasks:
+Using Makefile (Recommended)
+
+```bash
+# Run linter
+make lint
+
+# Auto-fix linting issues
+make lint-fix
+
+# Format code
+make format
+
+# Check formatting without changes
+make format-check
+
+# Run all checks
+make all
+```
+
+#### Using uv directly
+
+#### 
+```bash
+# Show all available commands
+make
+
+# Run tests
+make test
+
+# Run linter and auto-fix issues
+make lint-fix
+Using Makefile (Recommended)
+
+```bash
+# Run testiq analysis
+make testiq
+
+# Get test quality score
+make testiq-score
+
+# Generate HTML report
+make testiq-html
+open testiq_report.html
+```
+
+#### Using uv directly
+
+#### 
+# Format code
+make format
+
+# Run all quality checks
+make all
+
+# Run CI checks locally
+make ci
+
+# Clean up generated files
+make clean
+```
+
+### 
 ## Development Workflow
 
 ### Running Tests
@@ -74,9 +156,11 @@ uv run pytest tests/test_ping.py::TestPing::test_ping_en
 #### Linting with Ruff
 
 ```bash
-# Check for linting issues
-uv run ruff check .
-
+# Cmake all
+   # Or individually:
+   make lint-fix
+   make format
+   make 
 # Auto-fix linting issues
 uv run ruff check . --fix
 ```
@@ -112,8 +196,8 @@ uv run pytest --testiq-output=testiq_coverage.json
 #### Analyze Test Duplicates
 
 ```bash
-# Analyze for duplicate tests
-uv run testiq analyze testiq_coverage.json
+# Analyze for duplicate tests (threshold 1.0 skips similarity checks)
+uv run testiq analyze testiq_coverage.json --threshold 1.0
 
 # Get test quality score
 uv run testiq quality-score testiq_coverage.json
@@ -135,8 +219,8 @@ open htmlcov/index.html
 #### Generate TestIQ HTML Report
 
 ```bash
-# Generate TestIQ HTML report with duplicate test analysis
-uv run testiq analyze testiq_coverage.json --format html --output testiq_report.html
+# Generate TestIQ HTML report with duplicate test analysis (skip similarity with threshold 1.0)
+uv run testiq analyze testiq_coverage.json --threshold 1.0 --format html --output testiq_report.html
 
 # Open the report in your browser
 open testiq_report.html

@@ -34,7 +34,11 @@ jobs:
     
     - name: Test with pytest
       run: |
-        uv run pytest
+        uv run pytest --testiq-output=testiq_coverage.json
+    
+    - name: Analyze test quality with TestIQ
+      run: |
+        uv run testiq analyze testiq_coverage.json --threshold 1.0
     
     - name: Upload coverage
       uses: codecov/codecov-action@v4

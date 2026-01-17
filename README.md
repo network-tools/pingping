@@ -162,16 +162,45 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 # Clone and set up the project
 git clone https://github.com/network-tools/pingping.git
 cd pingping
-uv sync --all-extras
+
+# Install dependencies
+make install
 
 # Run tests
-uv run pytest
+make test
 
-# Run linter
-uv run ruff check .
+# Run all quality checks (linter, formatter, tests)
+make all
+```
 
-# Format code
-uv run black .
+### Makefile Commands
+
+The project includes a Makefile for common development tasks:
+
+```bash
+make help          # Show all available commands
+# Run testiq analysis (using Makefile)
+make testiq
+
+# Get test quality score
+make testiq-score
+
+# Generate HTML report
+make testiq-html
+open testiq_report.html
+```
+
+Or use commands directly:
+
+```bash
+# Generate coverage data for TestIQ
+uv run pytest --testiq-output=testiq_coverage.json
+
+# Analyze for duplicate tests (skip similarity with threshold 1.0)
+uv run testiq analyze testiq_coverage.json --threshold 1.0
+
+# Get test quality score
+uv run testiq quality-score testiq_coverage.jsonn all CI checks locally
 ```
 
 ### Test Quality Analysis
@@ -182,14 +211,14 @@ Analyze test quality and find duplicates using TestIQ:
 # Generate coverage data for TestIQ
 uv run pytest --testiq-output=testiq_coverage.json
 
-# Analyze for duplicate tests
-uv run testiq analyze testiq_coverage.json
+# Analyze for duplicate tests (skip similarity with threshold 1.0)
+uv run testiq analyze testiq_coverage.json --threshold 1.0
 
 # Get test quality score
 uv run testiq quality-score testiq_coverage.json
 
 # Generate HTML report with test duplicates analysis
-uv run testiq analyze testiq_coverage.json --format html --output testiq_report.html
+uv run testiq analyze testiq_coverage.json --threshold 1.0 --format html --output testiq_report.html
 open testiq_report.html
 ```
 
