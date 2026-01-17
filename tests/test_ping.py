@@ -162,7 +162,7 @@ class TestPingAdditional:
         command = ping._add_ip("invalid_ip")
         assert command is None
 
-    @patch('subprocess.Popen')
+    @patch("subprocess.Popen")
     def test_ping_valid_ip(self, mock_popen):
         """Test ping method with valid IP"""
         mock_process = MagicMock()
@@ -172,7 +172,7 @@ class TestPingAdditional:
             b"--- 8.8.8.8 ping statistics ---\n"
             b"1 packets transmitted, 1 received, 0% packet loss, time 0ms\n"
             b"rtt min/avg/max/mdev = 20.100/20.100/20.100/0.000 ms\n",
-            b""
+            b"",
         )
         mock_popen.return_value = mock_process
 
@@ -225,7 +225,7 @@ class TestPingAdditional:
         """Test tcping command initialization"""
         ping = Ping(command="tcping", layer=4)
         assert "tcping" in ping.command
-        assert "-c 4" in ping.command or "-t" in ' '.join(ping.command)
+        assert "-c 4" in ping.command or "-t" in " ".join(ping.command)
 
     def test_ping_with_timeout(self):
         """Test ping with custom timeout"""
@@ -233,7 +233,7 @@ class TestPingAdditional:
         Ping(timeout=10)
         # Timeout should be in the command for layer 4
         ping_l4 = Ping(layer=4, timeout=5)
-        assert "-t" in ' '.join(ping_l4.command) or "-t 5" in ping_l4.command
+        assert "-t" in " ".join(ping_l4.command) or "-t 5" in ping_l4.command
 
     def test_tcping_loss_percentage_calculation(self):
         """Test tcping loss percentage calculation (line 78)"""
@@ -264,17 +264,17 @@ class TestCLIFunctions:
         """Test run() function with valid IP address (lines 146-181)"""
         from pingping.ping import run
 
-        with patch('sys.argv', ['pingping', '8.8.8.8']):
-            with patch.object(Ping, 'ping', return_value={'ip': '8.8.8.8'}):
+        with patch("sys.argv", ["pingping", "8.8.8.8"]):
+            with patch.object(Ping, "ping", return_value={"ip": "8.8.8.8"}):
                 result = run()
                 assert result is not None
-                assert result['ip'] == '8.8.8.8'
+                assert result["ip"] == "8.8.8.8"
 
     def test_run_with_help_flag(self):
         """Test run() function with -h flag (lines 146-181)"""
         from pingping.ping import run
 
-        with patch('sys.argv', ['pingping', '-h']):
+        with patch("sys.argv", ["pingping", "-h"]):
             with pytest.raises(SystemExit) as exc_info:
                 run()
             assert exc_info.value.code == -1
@@ -283,7 +283,7 @@ class TestCLIFunctions:
         """Test run() function with --help flag (lines 146-181)"""
         from pingping.ping import run
 
-        with patch('sys.argv', ['pingping', '--help']):
+        with patch("sys.argv", ["pingping", "--help"]):
             with pytest.raises(SystemExit) as exc_info:
                 run()
             assert exc_info.value.code == -1
@@ -292,8 +292,8 @@ class TestCLIFunctions:
         """Test run() function with -l4 flag (lines 146-181)"""
         from pingping.ping import run
 
-        with patch('sys.argv', ['pingping', '-l4', '192.168.1.1']):
-            with patch.object(Ping, 'ping', return_value={'ip': '192.168.1.1'}):
+        with patch("sys.argv", ["pingping", "-l4", "192.168.1.1"]):
+            with patch.object(Ping, "ping", return_value={"ip": "192.168.1.1"}):
                 result = run()
                 assert result is not None
 
@@ -301,8 +301,8 @@ class TestCLIFunctions:
         """Test run() function with --web flag (lines 146-181)"""
         from pingping.ping import run
 
-        with patch('sys.argv', ['pingping', '--web', '192.168.1.1']):
-            with patch.object(Ping, 'ping', return_value={'ip': '192.168.1.1'}):
+        with patch("sys.argv", ["pingping", "--web", "192.168.1.1"]):
+            with patch.object(Ping, "ping", return_value={"ip": "192.168.1.1"}):
                 result = run()
                 assert result is not None
 
@@ -310,8 +310,8 @@ class TestCLIFunctions:
         """Test run() function with --tcp flag (lines 146-181)"""
         from pingping.ping import run
 
-        with patch('sys.argv', ['pingping', '--tcp', '192.168.1.1']):
-            with patch.object(Ping, 'ping', return_value={'ip': '192.168.1.1'}):
+        with patch("sys.argv", ["pingping", "--tcp", "192.168.1.1"]):
+            with patch.object(Ping, "ping", return_value={"ip": "192.168.1.1"}):
                 result = run()
                 assert result is not None
 
@@ -319,8 +319,8 @@ class TestCLIFunctions:
         """Test run() function with --http flag (lines 146-181)"""
         from pingping.ping import run
 
-        with patch('sys.argv', ['pingping', '--http', '192.168.1.1']):
-            with patch.object(Ping, 'ping', return_value={'ip': '192.168.1.1'}):
+        with patch("sys.argv", ["pingping", "--http", "192.168.1.1"]):
+            with patch.object(Ping, "ping", return_value={"ip": "192.168.1.1"}):
                 result = run()
                 assert result is not None
 
@@ -328,8 +328,8 @@ class TestCLIFunctions:
         """Test run() function with -c flag (lines 146-181)"""
         from pingping.ping import run
 
-        with patch('sys.argv', ['pingping', '-c', '10', '8.8.8.8']):
-            with patch.object(Ping, 'ping', return_value={'ip': '8.8.8.8'}):
+        with patch("sys.argv", ["pingping", "-c", "10", "8.8.8.8"]):
+            with patch.object(Ping, "ping", return_value={"ip": "8.8.8.8"}):
                 result = run()
                 assert result is not None
 
@@ -337,8 +337,8 @@ class TestCLIFunctions:
         """Test run() function with --count flag (lines 146-181)"""
         from pingping.ping import run
 
-        with patch('sys.argv', ['pingping', '--count', '15', '1.1.1.1']):
-            with patch.object(Ping, 'ping', return_value={'ip': '1.1.1.1'}):
+        with patch("sys.argv", ["pingping", "--count", "15", "1.1.1.1"]):
+            with patch.object(Ping, "ping", return_value={"ip": "1.1.1.1"}):
                 result = run()
                 assert result is not None
 
@@ -348,7 +348,7 @@ class TestCLIFunctions:
 
         # When -c flag is used but no valid IP is provided, it will create a default Ping
         # and attempt to ping None, which returns None (not a SystemExit)
-        with patch('sys.argv', ['pingping', '--help', 'invalid']):
+        with patch("sys.argv", ["pingping", "--help", "invalid"]):
             with pytest.raises(SystemExit) as exc_info:
                 run()
             assert exc_info.value.code == -1
@@ -357,7 +357,7 @@ class TestCLIFunctions:
         """Test run() function with no arguments (lines 146-181)"""
         from pingping.ping import run
 
-        with patch('sys.argv', ['pingping']):
+        with patch("sys.argv", ["pingping"]):
             with pytest.raises(SystemExit) as exc_info:
                 run()
             assert exc_info.value.code == -1
