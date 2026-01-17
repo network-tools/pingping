@@ -6,6 +6,8 @@
 [![Downloads](https://pepy.tech/badge/pingping)](https://pepy.tech/project/pingping)
 [![GitHub issues open](https://img.shields.io/github/issues/network-tools/pingping.svg?)](https://github.com/network-tools/pingping/issues)
 
+## Table of Contents
+
 - [Introduction](#introduction)
 - [Docs](#docs)
 - [Commands](#commands)
@@ -14,7 +16,10 @@
 - [FAQ](#faq)
 - [Other Resources](#other-resources)
 - [Bug Tracker and Support](#bug-tracker-and-support)
-- [Unit-Tests](#unit-tests)
+- [Unit Tests](#unit-tests)
+- [Development](#development)
+- [Contributing](#contributing)
+- [Changelog](#changelog)
 - [License and Copyright](#license-and-copyright)
 - [Author and Thanks](#author-and-thanks)
 
@@ -87,7 +92,7 @@ Usage pingping  <ip-address>
 
 ## Pre-requisites
 
-pingping supports **Python 3.8+**. The OS should not matter.
+pingping supports **Python 3.9+**. The OS should not matter.
 
 - shconfparser is used to capture the data.
 
@@ -132,7 +137,7 @@ uv sync --all-extras  # Install with dev dependencies
 
 ## Unit Tests
 
-- pingping project unit tests are running at [GitHub Actions](https://github.com/network-tools/pingping/actions) via pytest for Python 3.8+.
+- pingping project unit tests are running at [GitHub Actions](https://github.com/network-tools/pingping/actions) via pytest for Python 3.9+.
 
 - The current build status is:
 
@@ -146,8 +151,9 @@ This project uses modern Python tooling:
 - **[ruff](https://github.com/astral-sh/ruff)** - Fast Python linter
 - **[black](https://github.com/psf/black)** - Code formatter
 - **[pytest](https://pytest.org/)** - Testing framework
+- **[testiq](https://github.com/ivanmkc/testiq)** - Test quality analysis tool
 
-To set up a development environment:
+### Quick Start
 
 ```bash
 # Install uv if you haven't already
@@ -167,6 +173,38 @@ uv run ruff check .
 # Format code
 uv run black .
 ```
+
+### Test Quality Analysis
+
+Analyze test quality and find duplicates using TestIQ:
+
+```bash
+# Generate coverage data for TestIQ
+uv run pytest --testiq-output=testiq_coverage.json
+
+# Analyze for duplicate tests
+uv run testiq analyze testiq_coverage.json
+
+# Get test quality score
+uv run testiq quality-score testiq_coverage.json
+
+# Generate HTML report with test duplicates analysis
+uv run testiq analyze testiq_coverage.json --format html --output testiq_report.html
+open testiq_report.html
+```
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.md) for detailed information on:
+
+- Setting up your development environment
+- Running tests and quality checks
+- Code style guidelines
+- Submitting pull requests
+
+## Changelog
+
+See [CHANGELOG.md](docs/CHANGELOG.md) for a detailed history of changes to this project.
 
 ## License and Copyright
 
